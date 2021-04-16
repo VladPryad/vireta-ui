@@ -1,17 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <UserByIdQuery
+    v-bind:id="id"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import UserByIdQuery from '@/components/UserByIdQuery.vue'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      id: '2'
+    }
+  },
   components: {
-    HelloWorld
+    UserByIdQuery
   }
 }
 </script>
