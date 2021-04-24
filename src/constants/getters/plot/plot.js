@@ -1,0 +1,1 @@
+export const GET_CANVAS_CONTEXT = 'GET_CANVAS_CONTEXT';

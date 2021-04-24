@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <UserByIdQuery
+    <!-- <UserByIdQuery
     v-bind:id="id"
-    />
+    /> -->
+    <MainPage />
   </div>
 </template>
 
 <script>
 import UserByIdQuery from '@/components/UserByIdQuery.vue'
+import MainPage from '@/components/MainPage/MainPage.vue'
 
 export default {
   name: 'App',
@@ -17,7 +19,8 @@ export default {
     }
   },
   components: {
-    UserByIdQuery
+    UserByIdQuery,
+    MainPage
   }
 }
 </script>
