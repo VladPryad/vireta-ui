@@ -1,21 +1,26 @@
-import { GET_RECORDS } from '@/constants/getters/plot'
+import { GET_RECORDS, GET_LAST_RECORD } from '@/constants/getters/plot'
 import { ADD_RECORD } from '@/constants/mutations/plot'
 import { FETCH_PLOT_RECORDS_WS } from '@/constants/actions/plot'
 
 const state = () => ({
-    records: []
+    records: [],
+    lastRecord: {}
 })
 
 const getters = {
     [GET_RECORDS](state) {
-        return state.records;
+      return state.records;
+    },
+
+    [GET_LAST_RECORD](state) {
+      return state.lastRecord;
     }
 }
 
 const mutations = {
    [ADD_RECORD](state, record) {
      state.records.push(record);
-     console.log(state.records);
+     state.lastRecord = record;
    }
 }
 
@@ -32,7 +37,6 @@ const actions = {
     
         observer.subscribe({
           next (data) {
-            console.log(data.data.getPotRecordsIRT)
             ctx.commit(ADD_RECORD, data.data.getPotRecordsIRT);
           },
           error (error) {

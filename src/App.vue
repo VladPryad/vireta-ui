@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <UserByIdQuery
+    <!-- <UserByIdQuery
     v-bind:id="id"
-    />
-    <SubscriptionTry />
+    /> -->
     <MainPage />
   </div>
 </template>
 
 <script>
 import UserByIdQuery from '@/components/UserByIdQuery.vue'
-import SubscriptionTry from '@/components/SubscriptionTry.vue'
 import MainPage from '@/components/MainPage/MainPage.vue'
 
 export default {
@@ -22,7 +20,6 @@ export default {
   },
   components: {
     UserByIdQuery,
-    SubscriptionTry,
     MainPage
   }
 }

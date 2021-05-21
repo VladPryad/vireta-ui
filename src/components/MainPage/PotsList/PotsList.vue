@@ -1,6 +1,5 @@
 <template>
     <div>
-        MainPage
     <Pot />
     </div>
 </template>

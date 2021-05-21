@@ -1,7 +1,7 @@
 <template>
     <div>
         Pot Component
-        <Plot />
+        <Plot v-bind:id="this.potId" />
     </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
   name: 'Pot',
   components: {
     Plot
+  },
+  data() {
+    return {
+      potId: "APOLLO_NEW"
+    }
   }
 }
 </script>
