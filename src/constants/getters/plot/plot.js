@@ -1,1 +1,2 @@
 export const GET_CANVAS_CONTEXT = 'GET_CANVAS_CONTEXT';
+export const GET_RECORDS = 'GET_RECORDS';

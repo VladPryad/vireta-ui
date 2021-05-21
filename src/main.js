@@ -5,9 +5,6 @@ import { createProvider } from './vue-apollo'
 
 Vue.config.productionTip = false
 
-const prov = createProvider();
-console.log(prov)
-
 new Vue({
   store,
   apolloProvider: createProvider(),

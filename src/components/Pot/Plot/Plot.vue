@@ -1,6 +1,6 @@
 <template>
 <div>
-    <canvas id="c"></canvas>
+    <canvas id="canvas-plot"></canvas>
     <button @click="DRAW_RECTANGLE">Add Rect</button>
     <button @click="subWidth">-</button>
     <button @click="addWidth">+</button>
@@ -16,7 +16,7 @@ export default {
 mounted() {
     this[DEFINE_CANVAS_CONTEXT]({
         document,
-        id: 'c'
+        id: 'canvas-plot'
     });
 },
 data() {

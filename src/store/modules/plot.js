@@ -39,11 +39,11 @@ const mutations = {
       state.context.rect(20, 20, payload.rectWidth, 100);
       state.context.stroke(); 
       
+      state.context.endPath();
     }
 }
 
 const actions = {
-    
 }
 
 export default {

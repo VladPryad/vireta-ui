@@ -1,0 +1,21 @@
+subscription PotRecordsById($id: String!) {
+  getPotRecordsIRT(id: $id) {
+    potId
+    potName
+    total
+    measurements {
+      ph {
+        timestamp
+        value
+      }
+      humidity {
+        timestamp
+        value
+      }
+      mineralization {
+        timestamp
+        value
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@
     <template slot-scope="{ result: { data, loading, error } }">
              <div v-if="loading">Loading...</div>
              <div v-if="error">Error occured: {{ error }}</div>
-             <div v-else> {{ data.userById }} </div>
+             <div v-else> {{ data["userById"] }} </div>
         </template>
   </ApolloQuery>
 </template>
