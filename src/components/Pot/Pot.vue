@@ -1,17 +1,21 @@
 <template>
     <div>
         Pot Component
-        <Plot v-bind:id="this.potId" />
+        <Plot v-bind:id="this.potId" >
+          <plot></plot>
+        </Plot>
     </div>
 </template>
 
 <script>
 import Plot from '@/components/Pot/Plot/Plot.vue'
+import plot from '@/plot/plot_slot.vue';
 
 export default {
   name: 'Pot',
   components: {
-    Plot
+    Plot,
+    plot
   },
   data() {
     return {
