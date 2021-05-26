@@ -1,4 +1,4 @@
-import constant from '@/plot/constants'
+import {constant} from '@/plot/constants'
 
 export function line_plain(ctx, start, end, style) {
     ctx.globalAlpha = style.alfa;
@@ -19,7 +19,7 @@ export function line(ctx, coords, ratio, style) {
     ctx.lineWidth = style.size;
     ctx.strokeStyle = style.color;
     for(let el of coords) {
-        let x = constant.PADDING_X + el.x * ratio.xRatio;
+        let x = constant.PADDING_X_LEFT + el.x * ratio.xRatio;
         let y = constant.DPI_HEIGHT - constant.PADDING_Y - el.y * ratio.yRatio;
         ctx.lineTo( x, y);
     }

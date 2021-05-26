@@ -2,7 +2,7 @@ import Ratio from '@/utils/ratio';
 import chart_styles from '@/plot/styles/chartStyle.js';
 import { line } from '@/plot/figures'
 import gap from '@/plot/gap';
-import constant from '@/plot/constants'
+import {constant} from '@/plot/constants'
 
 export default function(ctx, measurement) {
     let boundaries = Ratio.computeBoundaries(measurement);

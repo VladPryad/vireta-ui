@@ -17,7 +17,11 @@ export default {
     return {
       provider: {
         context: null,
-        canvas: null
+        canvas: null,
+        style: {
+          width: null,
+          height: null
+        }
       }
     }
   },
@@ -29,6 +33,10 @@ export default {
   mounted() {
     this.provider.canvas = this.$refs['canvas'];
     this.provider.context = this.$refs['canvas'].getContext('2d');
+    this.provider.style = {
+      width: 1000,
+      height: 400
+    }
 
     this[FETCH_PLOT_RECORDS_WS]({
       apollo: this.$apollo,
@@ -50,6 +58,8 @@ export default {
 
 <style lang="scss" scoped>
 canvas {
-  border: 0px solid black;
+  border: 1px solid black;
+  width: 1000px;
+  height: 400px;
 }
 </style>

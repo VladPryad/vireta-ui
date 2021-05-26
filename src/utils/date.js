@@ -1,4 +1,4 @@
-import constant from '@/plot/constants'
+import { constant } from '@/plot/constants'
 
 export function toDate(timestamp) {
     const shortMonths = [

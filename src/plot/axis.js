@@ -1,22 +1,22 @@
 import { line_plain } from '@/plot/figures'
 import axis_styles from '@/plot/styles/axisStyle.js';
-import constant from '@/plot/constants'
+import {constant} from '@/plot/constants'
 
 export default function(ctx) {
-    const step = constant.PADDING_X/3
+    const step = (constant.PADDING_X_LEFT - constant.PADDING_X_LEFT_AXIS - constant.PADDING_X_Y_AXIS) /2;
     const bottom = constant.DPI_HEIGHT - constant.PADDING_Y;
-    const end = constant.DPI_WIDTH - constant.RIGHT_PADDING_X;
-    const padding = constant.PADDING_FROM_Y_AXIS;
+    const end = constant.DPI_WIDTH - constant.PADDING_X_RIGHT;
+    const padding = constant.PADDING_X_LEFT_AXIS;
 
-    line_plain(ctx, [step*3, bottom], [step*3, constant.PADDING_Y], axis_styles.y);
+    line_plain(ctx, [constant.PADDING_X_LEFT, bottom], [constant.PADDING_X_LEFT , constant.PADDING_Y], axis_styles.y);
 
-    line_plain(ctx, [step*3 - padding, bottom], [step*3 - padding, constant.PADDING_Y], axis_styles.ph);
-    line_plain(ctx, [step*2 - padding, bottom], [step*2 - padding, constant.PADDING_Y], axis_styles.m);
-    line_plain(ctx, [step - padding, bottom], [step - padding, constant.PADDING_Y], axis_styles.h);
+    line_plain(ctx, [step*2 + padding, bottom], [step*2 + padding, constant.PADDING_Y], axis_styles.ph);
+    line_plain(ctx, [step + padding, bottom], [step + padding, constant.PADDING_Y], axis_styles.m);
+    line_plain(ctx, [padding, bottom], [padding, constant.PADDING_Y], axis_styles.h);
 
-    line_plain(ctx, [constant.PADDING_X, bottom], [end, bottom], axis_styles.x);
+    line_plain(ctx, [constant.PADDING_X_LEFT, bottom], [end, bottom], axis_styles.x);
 
     line_plain(ctx, [end, bottom], [end, constant.PADDING_Y], axis_styles.current_stop);
-    line_plain(ctx, [end + 50, bottom], [end + 50, constant.PADDING_Y], axis_styles.current);
-    line_plain(ctx, [end + 50, bottom], [end + 120, bottom], axis_styles.current);
+    line_plain(ctx, [end + constant.PADDING_X_CURRENT, bottom], [end + constant.PADDING_X_CURRENT, constant.PADDING_Y], axis_styles.current);
+    line_plain(ctx, [end + constant.PADDING_X_CURRENT, bottom], [end + constant.PADDING_X_CURRENT + constant.TAIL_LENGTH, bottom], axis_styles.current);
 }
