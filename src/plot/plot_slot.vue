@@ -1,8 +1,8 @@
 <script>
 import { GET_RECORDS, GET_LAST_RECORD } from '@/constants/getters/plot'
 import { mapActions, mapGetters, mapMutations } from 'vuex';
-import Convert from '@/utils/convert';
-import { toDate, printDate } from '@/utils/date'
+import Convert from '@/plot/utils/convert';
+import { printDate } from '@/plot/utils/date'
 import axis from '@/plot/axis'
 import {constant, setDPI } from '@/plot/constants'
 import plot from '@/plot/plot'

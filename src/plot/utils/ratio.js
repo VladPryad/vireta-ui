@@ -1,4 +1,4 @@
-import Convert from '@/utils/convert';
+import Convert from '@/plot/utils/convert';
 export default class Ratio {
 
     static minmax(arr) {
@@ -45,6 +45,17 @@ export default class Ratio {
 
     static computeRatio(view, maxValue) {
         return view / maxValue;
+    }
+
+    static maxBoundary(boundaries) {
+        let maxBoundary;
+    
+        for(let param in boundaries) {
+            if(typeof maxBoundary !== 'number') maxBoundary = boundaries[param].maxY;
+            if(boundaries[param].maxY > maxBoundary) maxBoundary = boundaries[param].maxY;
+        }
+
+        return maxBoundary;
     }
 
     static computeBoundaries(arrays) {

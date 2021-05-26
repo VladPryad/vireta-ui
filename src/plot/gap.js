@@ -1,6 +1,6 @@
 import { line_plain } from '@/plot/figures'
 import {constant} from '@/plot/constants'
-import styles from '@/plot/styles/gapStyle.js';
+import styles from '@/plot/styles/gap.js';
 
 export default (ctx, measurement, param, ratio) => {
     const step = (constant.PADDING_X_LEFT - constant.PADDING_X_LEFT_AXIS - constant.PADDING_X_Y_AXIS) /2;

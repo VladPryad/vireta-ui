@@ -1,4 +1,5 @@
 import { constant } from '@/plot/constants'
+import style from '@/plot/styles/text'
 
 export function toDate(timestamp) {
     const shortMonths = [
@@ -20,9 +21,13 @@ export function toDate(timestamp) {
     const month = shortMonths[date.getMonth()];
     const year = date.getFullYear();
     const day = date.getDate();
-    const hours = date.getHours();
-    const seconds = date.getSeconds();
-    const minutes = date.getMinutes();
+    let hours = date.getHours().toString();
+    let seconds = date.getSeconds().toString();
+    let minutes = date.getMinutes().toString();
+    
+    minutes = +minutes < 10 ? '0' + minutes : minutes;
+    hours = +hours < 10 ? '0' + hours : hours;
+    seconds = +seconds < 10 ? '0' + seconds : seconds;
 
     const low = `${year} ${month} ${day}`;
     const high = `${hours}:${minutes}:${seconds}`;
@@ -40,8 +45,11 @@ export function printDate(ctx, record) {
 
     let maxDate = toDate(maxTime);
 
-    let x = constant.DPI_WIDTH - constant.RIGHT_PADDING_X;
+    const padding_between = 20;
+    const shift = 17;
+    let x = constant.DPI_WIDTH - constant.PADDING_X_RIGHT + constant.PADDING_X_CURRENT;
     let y = constant.DPI_HEIGHT - constant.PADDING_Y;
-    ctx.fillText(`${maxDate[1]}`, x + 55, y + 27);
-    ctx.fillText(`${maxDate[0]}`, x + 55, y + 12);
+    ctx.font = style.date;
+    ctx.fillText(`${maxDate[1]}`, x, y + shift + padding_between);
+    ctx.fillText(`${maxDate[0]}`, x, y + shift);
 }

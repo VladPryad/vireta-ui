@@ -1,5 +1,5 @@
 import { line_plain } from '@/plot/figures'
-import axis_styles from '@/plot/styles/axisStyle.js';
+import axis_styles from '@/plot/styles/axis.js';
 import {constant} from '@/plot/constants'
 
 export default function(ctx) {
