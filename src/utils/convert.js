@@ -2,16 +2,16 @@ export default class Convert {
 
     static fit(array, delay) {
         let shift  = array[0].x;
-        let arr = array.map((el, i) => {
+        let res =  array.map(el =>  {
             return {
-                x: el.x - shift + delay,
+                x: +el.x ,
                 y: el.y
             }
         });
-        return arr;
+        return res;
     }
 
-    static toCoordinates(records, { dPh = 0, dH = 0, dM = 0} ) {
+    static toCoordinates(records, { dPh, dH, dM} ) {
         let [ph, h, m] = [[], [], []];
 
         for( let el of records.measurements.ph) {
@@ -33,11 +33,9 @@ export default class Convert {
             })
         }
 
-        ph = this.fit(ph, dPh);
-        h = this.fit(h, dH);
-        m = this.fit(m, dM);
+        let res = { ph: this.fit(ph, dPh), h: this.fit(h, dH), m: this.fit(m, dM) };
 
-        return { ph, h, m };
+        return res;
     }
 
     static toSequentialCoordinates(records) {
@@ -52,27 +50,22 @@ export default class Convert {
                 delay.dH = el.measurements.humidity[0].timestamp - records[i - 1].measurements.humidity[records[i - 1].measurements.humidity.length - 1].timestamp;
                 delay.dM = el.measurements.mineralization[0].timestamp - records[i - 1].measurements.mineralization[records[i - 1].measurements.mineralization.length - 1].timestamp;
             }
+
             return this.toCoordinates(el, delay);
         });
 
-        let acc = {
-            ph: 0,
-            h: 0,
-            m: 0
+        let shift = {
+            ph: partial[0].ph[0].x,
+            h: partial[0].h[0].x,
+            m: partial[0].m[0].x
         }
+
         partial.forEach((element, index) => {
-            element.ph.forEach((el, i) => {
-                el.x += acc.ph;
-                acc.ph = el.x;
-            });
-            element.h.forEach((el, i) => {
-                el.x += acc.h;
-                acc.h = el.x;
-            });
-            element.m.forEach((el, i) => {
-                el.x += acc.m;
-                acc.m = el.x;
-            });
+            for(let param in element) {
+                element[param].forEach((el, i) => {
+                    el.x -= shift[param]
+                });
+            }
         });
 
         return partial;
@@ -91,5 +84,9 @@ export default class Convert {
             res.m.push(...part.m);
         }
         return res;
+    }
+
+    static toSpreadedSequentialCoordinates(records) {
+        return this.spreadCoordinates(this.toSequentialCoordinates(records));
     }
 }

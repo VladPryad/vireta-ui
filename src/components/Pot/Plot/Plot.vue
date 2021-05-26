@@ -50,6 +50,6 @@ export default {
 
 <style lang="scss" scoped>
 canvas {
-  border: 1px solid black;
+  border: 0px solid black;
 }
 </style>
