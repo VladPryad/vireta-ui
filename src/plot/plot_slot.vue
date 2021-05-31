@@ -8,6 +8,7 @@ import plot from '@/plot/plot'
 import feed from "@/plot/chronology"
 import Convert from '@/plot/utils/convert';
 import Ratio from '@/plot/utils/ratio';
+import grid from "@/plot/grid"
 
 
 export default  {
@@ -65,9 +66,10 @@ export default  {
         let measurements_sliced = Convert.toSpreadedSequentialCoordinates(records_sliced);
         let axisBoundaries_sliced = Ratio.getAxisBoundaries(records_sliced);
         let boundaries_sliced = Ratio.computeBoundaries(measurements_sliced);
+
+        grid(ctx, records_sliced);
         
         plot(ctx, measurements_sliced, axisBoundaries_sliced, boundaries_sliced);
-        //plot(ctx, measurements, axisBoundaries, boundaries);
 
         printDate(ctx, lastRecord);
         

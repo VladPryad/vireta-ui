@@ -1,5 +1,6 @@
 import { constant } from '@/plot/constants'
 import style from '@/plot/styles/text'
+import Ratio from '@/plot/utils/ratio'
 
 export function toDate(timestamp) {
     const shortMonths = [
@@ -53,3 +54,25 @@ export function printDate(ctx, record) {
     ctx.fillText(`${maxDate[1]}`, x, y + shift + padding_between);
     ctx.fillText(`${maxDate[0]}`, x, y + shift);
 }
+
+export function getTimeGaps(records, count) {
+    let [start, finish] = extractTimeRange(records);
+    const step = Math.round((+finish - +start) / count);
+    let res = [];
+    for(let i = 0; i < count; i++) {
+        res.push(+start + step * i)
+    }
+    return res;
+}
+
+function extractTimeRange(records) {
+    const start = Ratio.minmax_plain([
+        records[0].measurements.humidity.values[0].timestamp,
+        records[0].measurements.temperature.values[0].timestamp,
+        records[0].measurements.ph.values[0].timestamp])[0];
+    const finish = Ratio.minmax_plain([
+        records[records.length - 1].measurements.humidity.values[records[records.length - 1].measurements.humidity.values.length - 1].timestamp,
+        records[records.length - 1].measurements.temperature.values[records[records.length - 1].measurements.temperature.values.length - 1].timestamp,
+        records[records.length - 1].measurements.ph.values[records[records.length - 1].measurements.ph.values.length - 1].timestamp])[1];
+    return [start, finish];
+} // there is a mistake with low time (it shifts for a couple months), but h,m,s are OK

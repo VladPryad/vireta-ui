@@ -11,7 +11,7 @@ export default function(ctx, measurements, axisBoundaries, boundaries) {
             xRatio: Ratio.computeRatio(constant.VIEW_WIDTH, boundaries[param].maxX ),
             yRatio: Ratio.computeRatio(constant.VIEW_HEIGHT, axisBoundaries[param].max)  // ,boundaries[param].maxY to get equal scale
         }
-        gap(ctx, measurements, param, ratio)
+        gap(ctx, measurements, param, ratio);
         line(ctx, measurements[param], ratio, chart_styles[param]);
     }
 
