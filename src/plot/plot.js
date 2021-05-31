@@ -4,16 +4,15 @@ import { line } from '@/plot/figures'
 import gap from '@/plot/gap';
 import {constant} from '@/plot/constants'
 
-export default function(ctx, measurement) {
-    let boundaries = Ratio.computeBoundaries(measurement);
+export default function(ctx, measurements, axisBoundaries, boundaries) {
 
-    for(let param in measurement) {
+    for(let param in measurements) {
         let ratio = {
             xRatio: Ratio.computeRatio(constant.VIEW_WIDTH, boundaries[param].maxX ),
-            yRatio: Ratio.computeRatio(constant.VIEW_HEIGHT, Ratio.maxBoundary(boundaries))  // ,boundaries[param].maxY to get equal scale
+            yRatio: Ratio.computeRatio(constant.VIEW_HEIGHT, axisBoundaries[param].max)  // ,boundaries[param].maxY to get equal scale
         }
-        gap(ctx, measurement, param, ratio)
-        line(ctx, measurement[param], ratio, chart_styles[param]);
+        gap(ctx, measurements, param, ratio)
+        line(ctx, measurements[param], ratio, chart_styles[param]);
     }
 
 }

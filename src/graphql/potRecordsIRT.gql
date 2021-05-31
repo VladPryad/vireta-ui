@@ -5,16 +5,28 @@ subscription PotRecordsById($id: String!) {
     total
     measurements {
       ph {
-        timestamp
-        value
+        min
+        max
+        values {
+          timestamp
+          value
+        }
       }
       humidity {
-        timestamp
-        value
+        min
+        max
+        values {
+          timestamp
+          value
+        }
       }
-      mineralization {
-        timestamp
-        value
+      temperature {
+        min
+        max
+        values {
+          timestamp
+          value
+        }
       }
     }
   }

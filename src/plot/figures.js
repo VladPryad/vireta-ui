@@ -26,3 +26,18 @@ export function line(ctx, coords, ratio, style) {
     ctx.stroke()
     ctx.closePath();
 }
+
+export function line_feed(ctx, coords, ratio, style) {
+    ctx.globalAlpha = style.alfa;
+    ctx.beginPath();
+    ctx.setLineDash(style.segment);
+    ctx.lineWidth = style.size;
+    ctx.strokeStyle = style.color;
+    for(let el of coords) {
+        let x = constant.FEED_X + el.x * ratio.xRatio;
+        let y = constant.FEED_Y - el.y * ratio.yRatio;
+        ctx.lineTo( x, y);
+    }
+    ctx.stroke()
+    ctx.closePath();
+}

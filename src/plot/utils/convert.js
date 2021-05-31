@@ -11,29 +11,29 @@ export default class Convert {
         return res;
     }
 
-    static toCoordinates(records, { dPh, dH, dM} ) {
-        let [ph, h, m] = [[], [], []];
+    static toCoordinates(records, { dPh, dH, dT} ) {
+        let [ph, h, t] = [[], [], []];
 
-        for( let el of records.measurements.ph) {
+        for( let el of records.measurements.ph.values) {
             ph.push({
                 x: el.timestamp,
                 y: el.value
             })
         }
-        for( let el of records.measurements.humidity) {
+        for( let el of records.measurements.humidity.values) {
             h.push({
                 x: el.timestamp,
                 y: el.value
             })
         }
-        for( let el of records.measurements.mineralization) {
-            m.push({
+        for( let el of records.measurements.temperature.values) {
+            t.push({
                 x: el.timestamp,
                 y: el.value
             })
         }
 
-        let res = { ph: this.fit(ph, dPh), h: this.fit(h, dH), m: this.fit(m, dM) };
+        let res = { ph: this.fit(ph, dPh), h: this.fit(h, dH), t: this.fit(t, dT) };
 
         return res;
     }
@@ -43,12 +43,12 @@ export default class Convert {
             let delay = {
                 dPh: 0,
                 dH: 0,
-                dM: 0 
+                dT: 0 
             }
             if(i != 0) {
-                delay.dPh = el.measurements.ph[0].timestamp - records[i - 1].measurements.ph[records[i - 1].measurements.ph.length - 1].timestamp;
-                delay.dH = el.measurements.humidity[0].timestamp - records[i - 1].measurements.humidity[records[i - 1].measurements.humidity.length - 1].timestamp;
-                delay.dM = el.measurements.mineralization[0].timestamp - records[i - 1].measurements.mineralization[records[i - 1].measurements.mineralization.length - 1].timestamp;
+                delay.dPh = el.measurements.ph.values[0].timestamp - records[i - 1].measurements.ph.values[records[i - 1].measurements.ph.values.length - 1].timestamp;
+                delay.dH = el.measurements.humidity.values[0].timestamp - records[i - 1].measurements.humidity.values[records[i - 1].measurements.humidity.values.length - 1].timestamp;
+                delay.dM = el.measurements.temperature.values[0].timestamp - records[i - 1].measurements.temperature.values[records[i - 1].measurements.temperature.values.length - 1].timestamp;
             }
 
             return this.toCoordinates(el, delay);
@@ -57,7 +57,7 @@ export default class Convert {
         let shift = {
             ph: partial[0].ph[0].x,
             h: partial[0].h[0].x,
-            m: partial[0].m[0].x
+            t: partial[0].t[0].x
         }
 
         partial.forEach((element, index) => {
@@ -75,13 +75,13 @@ export default class Convert {
         let res = {
             ph: [],
             h: [],
-            m: []
+            t: []
         }
 
         for( let part of coords) {
             res.ph.push(...part.ph);
             res.h.push(...part.h);
-            res.m.push(...part.m);
+            res.t.push(...part.t);
         }
         return res;
     }

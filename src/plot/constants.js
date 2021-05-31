@@ -12,6 +12,11 @@ let constant = {
     TAIL_LENGTH: 0,
     VIEW_HEIGHT: 0,
     VIEW_WIDTH: 0,
+    FEED_WIDTH: 0,
+    FEED_HEIGHT: 0,
+    FEED_Y: 0,
+    FEED_X: 0,
+    FEED_PADDING_Y: 0
 }
 
 function setDPI(dpi, style) {
@@ -32,5 +37,13 @@ function setDPI(dpi, style) {
 
     constant.VIEW_HEIGHT = constant.DPI_HEIGHT - constant.PADDING_Y * 2;
     constant.VIEW_WIDTH = constant.DPI_WIDTH - constant.PADDING_X_LEFT - constant.PADDING_X_RIGHT;
+
+    constant.FEED_HEIGHT = constant.VIEW_HEIGHT / 8;
+    constant.FEED_WIDTH = constant.VIEW_WIDTH;
+    constant.FEED_PADDING_Y = constant.FEED_HEIGHT * 1.2;
+    constant.FEED_Y = constant.DPI_HEIGHT - constant.PADDING_Y + constant.FEED_PADDING_Y;
+    constant.FEED_X = constant.PADDING_X_LEFT;
+    //FEED_PADDING
+
 }
 export { constant, setDPI };

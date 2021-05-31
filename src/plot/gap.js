@@ -5,9 +5,9 @@ import styles from '@/plot/styles/gap.js';
 export default (ctx, measurement, param, ratio) => {
     const step = (constant.PADDING_X_LEFT - constant.PADDING_X_LEFT_AXIS - constant.PADDING_X_Y_AXIS) /2;
     const axisX = {
-        ph: constant.PADDING_X_LEFT  - constant.PADDING_X_Y_AXIS,
+        ph: constant.PADDING_X_LEFT_AXIS + step ,
         h: constant.PADDING_X_LEFT_AXIS,
-        m: constant.PADDING_X_LEFT_AXIS + step
+        t: constant.PADDING_X_LEFT  - constant.PADDING_X_Y_AXIS
     }
 
     let firstRecordValue = measurement[param][0].y;

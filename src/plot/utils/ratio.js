@@ -58,11 +58,48 @@ export default class Ratio {
         return maxBoundary;
     }
 
+    static getAxisBoundaries(records) {
+
+        let values = records.map(el => {
+            return {
+                ph: {
+                    max: el.measurements.ph.max,
+                    min: el.measurements.ph.min
+                },
+                h: {
+                    max: el.measurements.humidity.max,
+                    min: el.measurements.humidity.min
+                },
+                t: {
+                    max: el.measurements.temperature.max,
+                    min: el.measurements.temperature.min
+                }
+            }
+        });
+
+        let res = {
+            ph: {
+                min: this.minmax_plain(values.map(e => e.ph.min))[0],
+                max: this.minmax_plain(values.map(e => e.ph.max))[1]
+            },
+            h: {
+                min: this.minmax_plain(values.map(e => e.h.min))[0],
+                max: this.minmax_plain(values.map(e => e.h.max))[1]
+            },
+            t: {
+                min: this.minmax_plain(values.map(e => e.t.min))[0],
+                max: this.minmax_plain(values.map(e => e.t.max))[1]
+            }
+        }
+
+        return res;
+    }
+
     static computeBoundaries(arrays) {
 
         let phRes = this.minmax(arrays.ph);
         let hRes = this.minmax(arrays.h);
-        let mRes = this.minmax(arrays.m);
+        let mRes = this.minmax(arrays.t);
         
         return {
             ph: {
@@ -77,7 +114,7 @@ export default class Ratio {
                 minY: hRes[1][0],
                 maxY: hRes[1][1]
             },
-            m: {
+            t: {
                 minX: mRes[0][0],
                 maxX: mRes[0][1],
                 minY: mRes[1][0],

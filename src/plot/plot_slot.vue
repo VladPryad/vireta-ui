@@ -1,11 +1,13 @@
 <script>
 import { GET_RECORDS, GET_LAST_RECORD } from '@/constants/getters/plot'
 import { mapActions, mapGetters, mapMutations } from 'vuex';
-import Convert from '@/plot/utils/convert';
 import { printDate } from '@/plot/utils/date'
 import axis from '@/plot/axis'
 import {constant, setDPI } from '@/plot/constants'
 import plot from '@/plot/plot'
+import feed from "@/plot/chronology"
+import Convert from '@/plot/utils/convert';
+import Ratio from '@/plot/utils/ratio';
 
 
 export default  {
@@ -40,6 +42,8 @@ export default  {
         }
     },
     render() {
+        const RENDER_COUNT = 5;
+
         if(!this.provider.context) return;
         const canvas = this.provider.canvas;
         this.configCanvas()
@@ -48,16 +52,26 @@ export default  {
 
         axis(ctx);
         
-        let record = this[GET_LAST_RECORD];
-        if(!record.__ob__.value.potId) return;
+        let lastRecord = this[GET_LAST_RECORD];
+        if(!lastRecord.__ob__.value.potId) return;
 
-        let measurements = Convert.toSpreadedSequentialCoordinates(this[GET_RECORDS]);
+        let allRecords = this[GET_RECORDS];
+
+        let measurements = Convert.toSpreadedSequentialCoordinates(allRecords);
+        let boundaries = Ratio.computeBoundaries(measurements);
+        let axisBoundaries = Ratio.getAxisBoundaries(allRecords);
+
+        let records_sliced = allRecords.slice(allRecords.length - RENDER_COUNT);
+        let measurements_sliced = Convert.toSpreadedSequentialCoordinates(records_sliced);
+        let axisBoundaries_sliced = Ratio.getAxisBoundaries(records_sliced);
+        let boundaries_sliced = Ratio.computeBoundaries(measurements_sliced);
         
-        plot(ctx, measurements);
+        plot(ctx, measurements_sliced, axisBoundaries_sliced, boundaries_sliced);
+        //plot(ctx, measurements, axisBoundaries, boundaries);
 
-        printDate(ctx, record);
-
-                
+        printDate(ctx, lastRecord);
+        
+        feed(ctx, measurements, boundaries)
     }
 }
   

@@ -2,7 +2,7 @@ export default {
     ph: {
         size: 1,
         segment: [],
-        color: "#d10000",
+        color: "#439600",
         alfa: 1
     },
     h: {
@@ -11,10 +11,10 @@ export default {
         color: "#0099d1",
         alfa: 1
     },
-    m: {
+    t: {
         size: 1,
         segment: [],
-        color: "#439600",
+        color: "#d10000",
         alfa: 1
     },
     x: {

@@ -38,7 +38,7 @@ export function printDate(ctx, record) {
     let maxTime = 0;
         for(let param in record.measurements) {
             if(param != "__typename") {
-                let time = record.measurements[param][record.measurements[param].length - 1].timestamp;
+                let time = record.measurements[param].values[record.measurements[param].values.length - 1].timestamp;
                 if(maxTime < time) maxTime = time;
             }
         }
