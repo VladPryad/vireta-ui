@@ -1,0 +1,6 @@
+query LogIn($username: String!, $password: String!) {
+    logIn(username: $username, password: $password) {
+        isLoggedIn,
+        token
+    }
+}

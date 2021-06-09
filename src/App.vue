@@ -1,26 +1,14 @@
 <template>
   <div id="app">
-    <!-- <UserByIdQuery
-    v-bind:id="id"
-    /> -->
-    <MainPage />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import UserByIdQuery from '@/components/UserByIdQuery.vue'
-import MainPage from '@/components/MainPage/MainPage.vue'
 
 export default {
   name: 'App',
-  data() {
-    return {
-      id: '2'
-    }
-  },
   components: {
-    UserByIdQuery,
-    MainPage
   }
 }
 </script>
