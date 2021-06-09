@@ -10,9 +10,9 @@ export default function(ctx, records) {
     let step = constant.VIEW_WIDTH / LINE_COUNT;
     for(let i = 1; i < LINE_COUNT; i++) {
         let x = constant.PADDING_X_LEFT + step * i;
-        line_plain(ctx, [x, constant.PADDING_Y], [x, constant.PADDING_Y + constant.VIEW_HEIGHT], styles.current_stop);
+        line_plain(ctx, [x, constant.PADDING_Y], [x, constant.PADDING_Y + constant.VIEW_HEIGHT], styles.time_grid);
         let date = toDate(dates[i]);
         ctx.font = styles_text.title;
-        ctx.fillText(`${date[1]}`, x - 25, constant.PADDING_Y - 5);
+        ctx.fillText(`${date[1]}`, x - 25, constant.PADDING_Y - constant.PADDING_UPTITLE);
     }
 }

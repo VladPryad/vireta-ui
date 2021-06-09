@@ -16,7 +16,8 @@ let constant = {
     FEED_HEIGHT: 0,
     FEED_Y: 0,
     FEED_X: 0,
-    FEED_PADDING_Y: 0
+    FEED_PADDING_Y: 0,
+    PADDING_UPTITLE: 0
 }
 
 function setDPI(dpi, style) {
@@ -43,7 +44,7 @@ function setDPI(dpi, style) {
     constant.FEED_PADDING_Y = constant.FEED_HEIGHT * 1.2;
     constant.FEED_Y = constant.DPI_HEIGHT - constant.PADDING_Y + constant.FEED_PADDING_Y;
     constant.FEED_X = constant.PADDING_X_LEFT;
-    //FEED_PADDING
+    constant.PADDING_UPTITLE = 10;
 
 }
 export { constant, setDPI };

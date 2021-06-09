@@ -30,7 +30,7 @@ export default {
         alfa: 1
     },
     current: {
-        size: 1,
+        size: 0.5,
         segment: [],
         color: "#7621ed",
         alfa: 1
@@ -39,6 +39,12 @@ export default {
         size: 1,
         segment: [],
         color: "#cfcfcf",
+        alfa: 1
+    },
+    time_grid: {
+        size: 1,
+        segment: [],
+        color: "#e0e0e0",
         alfa: 1
     }
 }

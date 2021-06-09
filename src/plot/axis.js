@@ -8,7 +8,6 @@ export default function(ctx) {
     const bottom = constant.DPI_HEIGHT - constant.PADDING_Y;
     const end = constant.DPI_WIDTH - constant.PADDING_X_RIGHT;
     const padding = constant.PADDING_X_LEFT_AXIS;
-    const title_padding = 5;
 
     line_plain(ctx, [constant.PADDING_X_LEFT, bottom], [constant.PADDING_X_LEFT , constant.PADDING_Y], axis_styles.y);
 
@@ -17,9 +16,9 @@ export default function(ctx) {
     line_plain(ctx, [padding, bottom], [padding, constant.PADDING_Y], axis_styles.h);
 
     ctx.font = text_styles.title;
-    ctx.fillText("t,°C", step*2 + padding - 5, constant.PADDING_Y - title_padding);
-    ctx.fillText("pH", step + padding - 5, constant.PADDING_Y - title_padding);
-    ctx.fillText("Moist,%", padding - 15, constant.PADDING_Y - title_padding);
+    ctx.fillText("t,°C", step*2 + padding - 5, constant.PADDING_Y - constant.PADDING_UPTITLE);
+    ctx.fillText("pH", step + padding - 5, constant.PADDING_Y - constant.PADDING_UPTITLE);
+    ctx.fillText("Moist,%", padding - 15, constant.PADDING_Y - constant.PADDING_UPTITLE);
 
     line_plain(ctx, [constant.PADDING_X_LEFT, bottom], [end, bottom], axis_styles.x);
 
