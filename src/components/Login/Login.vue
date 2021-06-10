@@ -34,8 +34,6 @@
 </template>
 
 <script>
-import { useQuery } from '@vue/apollo-composable'
-import { watch } from '@vue/composition-api'
 import gql from 'graphql-tag'
 
 export default{
@@ -55,7 +53,9 @@ export default{
                 query logIn($username: String!, $password: String!) {
                         logIn(username: $username, password: $password) {
                             isLoggedIn,
-                            token
+                            token,
+                            login,
+                            id
                         }
                     }
                 `;
@@ -76,6 +76,8 @@ export default{
             if(res.data.logIn.isLoggedIn) {
                 this.isLoggedIn = true;
                 localStorage.setItem("token", res.data.logIn.token);
+                localStorage.setItem("user", res.data.logIn.login);
+                localStorage.setItem("id", res.data.logIn.id);
                 this.$router.push({
                     name: "main"
                 })

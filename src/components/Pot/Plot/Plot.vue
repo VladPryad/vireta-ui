@@ -34,8 +34,8 @@ export default {
     this.provider.canvas = this.$refs['canvas'];
     this.provider.context = this.$refs['canvas'].getContext('2d');
     this.provider.style = {
-      width: 1000,
-      height: 400
+      width: 1200,
+      height: 600
     }
 
     this[FETCH_PLOT_RECORDS_WS]({
@@ -59,7 +59,7 @@ export default {
 <style lang="scss" scoped>
 canvas {
   border: 0px solid black;
-  width: 1000px;
-  height: 400px;
+  width: 1200px;
+  height: 600px;
 }
 </style>

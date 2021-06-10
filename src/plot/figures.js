@@ -26,7 +26,21 @@ export function line(ctx, coords, ratio, style) {
     ctx.stroke()
     ctx.closePath();
 }
-
+export function line_miniature(ctx, coords, ratio, style, dpi_height, dpi_width) {
+    ctx.globalAlpha = style.alfa;
+    ctx.beginPath();
+    ctx.setLineDash(style.segment);
+    ctx.lineWidth = style.size;
+    ctx.strokeStyle = style.color;
+    for(let el of coords) {
+        let x = 0 + el.x * ratio.xRatio;
+        let y = dpi_height - el.y * ratio.yRatio;
+        console.log(x, y)
+        ctx.lineTo( x, y);
+    }
+    ctx.stroke()
+    ctx.closePath();
+}
 export function line_feed(ctx, coords, ratio, style) {
     ctx.globalAlpha = style.alfa;
     ctx.beginPath();

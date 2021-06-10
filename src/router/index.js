@@ -19,7 +19,7 @@ const routes = [
     component: MainPage
   },
   {
-    path: '/pot',
+    path: '/pot/:id',
     name: 'pot',
     component: Pot
   },

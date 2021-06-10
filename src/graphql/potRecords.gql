@@ -1,0 +1,33 @@
+query potRecordsById($id: String) {
+  recordsByPot(id: $id) {
+    potId
+    total
+    potName
+    measurements{
+      ph {
+        min
+        max
+        values {
+          timestamp
+          value
+        }
+      }
+      humidity {
+        min
+        max
+        values {
+          timestamp
+          value
+        }
+      }
+      temperature {
+        min
+        max
+        values {
+          timestamp
+          value
+        }
+      }
+    }
+  }
+}
